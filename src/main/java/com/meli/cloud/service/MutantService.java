@@ -48,7 +48,9 @@ public class MutantService {
 		dnaMutation.setIdDna(dnaSearch);
 		if (redisService.getByIdDna(dnaSearch) == null) {
 			System.out.println("Creating Dna...");
-			sqsSender.send(dnaMutation);
+			//sqsSender.send(dnaMutation);
+			redisService.save(dnaMutation);
+			System.out.println("Saved Dna...");
 		}
 
 		if (mutations >= numSequences) {
