@@ -1,4 +1,4 @@
-# Spring Cloud AWS Example with SQS and ElastiCache using Redis
+# Java Spring with Cloud AWS with Beanstalk and ElastiCache using Redis
 
 ## API
 
