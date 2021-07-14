@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.meli.cloud.model.User;
 import com.meli.cloud.service.MutantService;
 import com.meli.cloud.service.RedisService;
 import com.meli.cloud.service.SqsSender;
