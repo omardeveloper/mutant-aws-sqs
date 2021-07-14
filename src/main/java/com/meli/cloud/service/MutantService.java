@@ -168,8 +168,13 @@ public class MutantService {
 	 */
 	public DnaStats stats() {
 		// first get all data from our database
-		List<DnaMutation> dnaMutationList = new ArrayList<>();
-				//redisService.findAll();
+		List<DnaMutation> dnaMutationList = new ArrayList();
+		Map<String, DnaMutation> dnaMutationFindAll = redisService.findAll();
+		
+		for (DnaMutation dnaMutation : dnaMutationFindAll.values()) {
+		   dnaMutationList.add(dnaMutation);
+		}
+		
 		DnaStats dnaStats = DnaStats.builder().countHuman(0).countMutant(0).ratio(0.0).build();
 		if (dnaMutationList.size() > 0) {
 			int countMutant = (int) dnaMutationList.stream().filter(dna -> dna.getMutations() >= numSequences).count();
