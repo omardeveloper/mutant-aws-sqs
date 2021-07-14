@@ -30,7 +30,7 @@ public class RedisService {
 	 * 
 	 * @return list of DnaMutation
 	 */
-	public List<DnaMutation> findAll() {
+	public List<Map<String, DnaMutation>> findAll() {
 		return dnaMutationRepository.findAll();
 	}
 

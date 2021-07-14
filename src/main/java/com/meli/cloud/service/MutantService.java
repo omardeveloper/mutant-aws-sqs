@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.meli.cloud.model.DnaMutation;
 import com.meli.cloud.model.DnaStats;
+import com.techprimers.model.User;
 
 @Repository
 public class MutantService {
@@ -167,7 +169,8 @@ public class MutantService {
 	 */
 	public DnaStats stats() {
 		// first get all data from our database
-		List<DnaMutation> dnaMutationList = redisService.findAll();
+		List<DnaMutation> dnaMutationList = new ArrayList<>();
+				//redisService.findAll();
 		DnaStats dnaStats = DnaStats.builder().countHuman(0).countMutant(0).ratio(0.0).build();
 		if (dnaMutationList.size() > 0) {
 			int countMutant = (int) dnaMutationList.stream().filter(dna -> dna.getMutations() >= numSequences).count();
@@ -198,10 +201,9 @@ public class MutantService {
 	 * 
 	 * @return List<DnaMutation>
 	 */
-	public List<DnaMutation> findAll() {
+	public List<Map<String, DnaMutation>> findAll() {
 		// first get all data from our database
-		List<DnaMutation> dnaMutationList = redisService.findAll();
-		
+		List<Map<String, DnaMutation>> dnaMutationList = redisService.findAll();		
 		return dnaMutationList;
 	}
 }
