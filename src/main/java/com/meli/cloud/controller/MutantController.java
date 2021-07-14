@@ -19,6 +19,11 @@ public class MutantController {
 	@Autowired
 	MutantService mutantService;
 
+	@GetMapping("/hola")
+    public String saludar() {
+        return "Hola Javero Omar !!!";
+    }	
+	
 	@PostMapping("/meli")
 	public ResponseEntity isMutant(@RequestBody Map<String, String[]> data) {
 		return mutantService.isMutant(data.get("dna")) ? new ResponseEntity(HttpStatus.OK)
