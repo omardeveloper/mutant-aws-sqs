@@ -18,10 +18,12 @@ import com.meli.cloud.model.DnaMutation;
 @EnableElastiCache({@CacheClusterConfig(name = "mutationcache")})
 public class RedisConfig {
 
-  @Value("${spring.redis.host}")
+  //@Value("${spring.redis.host}")
+  @Value("${mutant.jedis.server}")
   private String host;
 
-  @Value("${spring.redis.port}")
+//  @Value("${spring.redis.port}")
+  @Value("${mutant.jedis.port}")
   private Integer port;
 
   @Bean
