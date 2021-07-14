@@ -12,7 +12,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.meli.cloud.model.User;
+import com.meli.cloud.model.DnaMutation;
 
 @Configuration
 @EnableElastiCache({@CacheClusterConfig(name = "mutationcache")})
@@ -31,8 +31,8 @@ public class RedisConfig {
   }
 
   @Bean(value = "redisTemplate")
-  public RedisTemplate<String, User> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
-    RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
+  public RedisTemplate<String, DnaMutation> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
+    RedisTemplate<String, DnaMutation> redisTemplate = new RedisTemplate<>();
     redisTemplate.setConnectionFactory(jedisConnectionFactory);
     return redisTemplate;
   }
