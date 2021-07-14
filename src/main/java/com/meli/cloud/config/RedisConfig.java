@@ -15,34 +15,46 @@ import org.springframework.data.redis.core.RedisTemplate;
 import com.meli.cloud.model.DnaMutation;
 
 @Configuration
-@EnableElastiCache({@CacheClusterConfig(name = "mutationcache")})
+@EnableElastiCache({ @CacheClusterConfig(name = "mutationcache") })
 public class RedisConfig {
 
-  //@Value("${spring.redis.host}")
-  @Value("${mutant.jedis.server}")
-  private String host;
+	@Value("${mutant.jedis.server}")
+	private String host;
 
-//  @Value("${spring.redis.port}")
-  @Value("${mutant.jedis.port}")
-  private Integer port;
+	@Value("${mutant.jedis.port}")
+	private Integer port;
 
-  @Bean
-  JedisConnectionFactory jedisConnectionFactory() {
-    RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
-    return new JedisConnectionFactory(redisStandaloneConfiguration);
-  }
+	/**
+	 * This Method have configuration of JedisConnectionFactory
+	 * 
+	 * @return JedisConnectionFactory
+	 */
+	@Bean
+	JedisConnectionFactory jedisConnectionFactory() {
+		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
+		return new JedisConnectionFactory(redisStandaloneConfiguration);
+	}
 
-  @Bean(value = "redisTemplate")
-  public RedisTemplate<String, DnaMutation> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
-    RedisTemplate<String, DnaMutation> redisTemplate = new RedisTemplate<>();
-    redisTemplate.setConnectionFactory(jedisConnectionFactory);
-    return redisTemplate;
-  }
+	/**
+	 * This Method have configuration of RedisTemplate
+	 * 
+	 * @return RedisTemplate
+	 */
+	@Bean(value = "redisTemplate")
+	public RedisTemplate<String, DnaMutation> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
+		RedisTemplate<String, DnaMutation> redisTemplate = new RedisTemplate<>();
+		redisTemplate.setConnectionFactory(jedisConnectionFactory);
+		return redisTemplate;
+	}
 
-  @Bean(name = "cacheManager")
-  public CacheManager cacheManager(JedisConnectionFactory jedisConnectionFactory) {
-    return RedisCacheManager.builder(jedisConnectionFactory)
-        .cacheDefaults(RedisCacheConfiguration.defaultCacheConfig())
-        .build();
-  }
+	/**
+	 * This Method have configuration of CacheManager
+	 * 
+	 * @return CacheManager
+	 */
+	@Bean(name = "cacheManager")
+	public CacheManager cacheManager(JedisConnectionFactory jedisConnectionFactory) {
+		return RedisCacheManager.builder(jedisConnectionFactory)
+				.cacheDefaults(RedisCacheConfiguration.defaultCacheConfig()).build();
+	}
 }

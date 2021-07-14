@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.meli.cloud.model.DnaMutation;
 import com.meli.cloud.repository.DnaMutationRepository;
 
-import java.util.List;
 import java.util.Map;
 
 @Service

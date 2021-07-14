@@ -17,30 +17,37 @@ public class DnaMutationRepositoryImpl implements DnaMutationRepository {
 
 	@Autowired
 	private RedisTemplate redisTemplate;
-	
-//	@Autowired
-//	private HashOperations hashOperations;
-//	private RedisTemplate<String, DnaMutation> redisTemplate;
-//	private HashOperations hashOperations;
 
-//	public DnaMutationRepositoryImpl(RedisTemplate<String, DnaMutation> redisTemplate) {
-//		this.redisTemplate = redisTemplate;
-//		hashOperations = redisTemplate.opsForHash();
-//	}
-
+	/**
+	 * This Method save the DnaMutation in redis
+	 * 
+	 * @param dnaMutation
+	 * @return DnaMutation
+	 */
 	@Override
 	public void save(DnaMutation dnaMutation) {
 		redisTemplate.opsForHash().put(HASH_KEY, dnaMutation.getIdDna(), dnaMutation);
 	}
 
+	/**
+	 * This Method get all data from redis
+	 * 
+	 * @return list of DnaMutation
+	 */
 	@Override
 	public Map<String, DnaMutation> findAll() {
 		return (Map<String, DnaMutation>) redisTemplate.opsForHash().entries(HASH_KEY);
 	}
 
+	/**
+	 * This Method search in database for IdDna
+	 * 
+	 * @param idDna
+	 * @return DnaMutation
+	 */
 	@Override
 	public DnaMutation findByIdDna(String idDna) {
-		return (DnaMutation) redisTemplate.opsForHash().get(HASH_KEY,idDna);
+		return (DnaMutation) redisTemplate.opsForHash().get(HASH_KEY, idDna);
 	}
 
 }

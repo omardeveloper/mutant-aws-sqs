@@ -25,9 +25,6 @@ public class MutantService {
 	@Autowired
 	RedisService redisService;
 
-	@Autowired
-	SqsSender sqsSender;
-
 	/**
 	 * This Method verify if the String[] have sequence mutant
 	 * 
@@ -49,7 +46,6 @@ public class MutantService {
 		dnaMutation.setIdDna(dnaSearch);
 		if (redisService.getByIdDna(dnaSearch) == null) {
 			System.out.println("Creating Dna...");
-			//sqsSender.send(dnaMutation);
 			redisService.save(dnaMutation);
 			System.out.println("Saved Dna...");
 		}
@@ -170,11 +166,11 @@ public class MutantService {
 		// first get all data from our database
 		List<DnaMutation> dnaMutationList = new ArrayList();
 		Map<String, DnaMutation> dnaMutationFindAll = redisService.findAll();
-		
+
 		for (DnaMutation dnaMutation : dnaMutationFindAll.values()) {
-		   dnaMutationList.add(dnaMutation);
+			dnaMutationList.add(dnaMutation);
 		}
-		
+
 		DnaStats dnaStats = DnaStats.builder().countHuman(0).countMutant(0).ratio(0.0).build();
 		if (dnaMutationList.size() > 0) {
 			int countMutant = (int) dnaMutationList.stream().filter(dna -> dna.getMutations() >= numSequences).count();
@@ -199,7 +195,7 @@ public class MutantService {
 		bigDecimal = bigDecimal.setScale(placesRound, RoundingMode.HALF_UP);
 		return bigDecimal.doubleValue();
 	}
-	
+
 	/**
 	 * This Method get the list of dna verifications
 	 * 
@@ -208,7 +204,7 @@ public class MutantService {
 	public Map<String, DnaMutation> findAll() {
 		// first get all data from our database
 		Map<String, DnaMutation> dnaMutationList = redisService.findAll();
-		
+
 		return dnaMutationList;
 	}
 }
