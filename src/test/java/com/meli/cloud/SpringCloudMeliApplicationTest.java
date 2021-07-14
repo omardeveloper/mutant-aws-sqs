@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.meli.cloud.service.MutantService;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringCloudMeliApplicationTest {
