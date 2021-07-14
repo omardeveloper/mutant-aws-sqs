@@ -34,5 +34,10 @@ public class MutantController {
 	public ResponseEntity stats() {
 		return new ResponseEntity<>(mutantService.stats(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/allDna")
+	public ResponseEntity findAll() {
+		return new ResponseEntity<>(mutantService.findAll(), HttpStatus.OK);
+	}
 
 }

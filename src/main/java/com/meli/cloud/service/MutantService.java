@@ -192,4 +192,16 @@ public class MutantService {
 		bigDecimal = bigDecimal.setScale(placesRound, RoundingMode.HALF_UP);
 		return bigDecimal.doubleValue();
 	}
+	
+	/**
+	 * This Method get the list of dna verifications
+	 * 
+	 * @return List<DnaMutation>
+	 */
+	public List<DnaMutation> findAll() {
+		// first get all data from our database
+		List<DnaMutation> dnaMutationList = redisService.findAll();
+		
+		return dnaMutationList;
+	}
 }
