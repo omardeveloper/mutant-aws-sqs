@@ -1,5 +1,6 @@
 package com.meli.cloud.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,8 +15,13 @@ public class DnaMutationRepositoryImpl implements DnaMutationRepository {
 
 	public static final String HASH_KEY = "mutationcache";
 
-	private RedisTemplate<String, DnaMutation> redisTemplate;
+	@Autowired
+	private RedisTemplate redisTemplate;
+	
+	@Autowired
 	private HashOperations hashOperations;
+//	private RedisTemplate<String, DnaMutation> redisTemplate;
+//	private HashOperations hashOperations;
 
 	public DnaMutationRepositoryImpl(RedisTemplate<String, DnaMutation> redisTemplate) {
 		this.redisTemplate = redisTemplate;

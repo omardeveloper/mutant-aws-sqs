@@ -20,7 +20,7 @@ public class MutantController {
 	@Autowired
 	MutantService mutantService;
 
-	@PostMapping("/mutant")
+	@PostMapping("/meli")
 	public ResponseEntity isMutant(@RequestBody Map<String, String[]> data) {
 		return mutantService.isMutant(data.get("dna")) ? new ResponseEntity(HttpStatus.OK)
 				: new ResponseEntity(HttpStatus.FORBIDDEN);
