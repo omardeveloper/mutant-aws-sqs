@@ -34,8 +34,8 @@ public class DnaMutationRepositoryImpl implements DnaMutationRepository {
 	}
 
 	@Override
-	public List<DnaMutation> findAll() {
-		return (List<DnaMutation>) redisTemplate.opsForHash().entries(HASH_KEY);
+	public Map<String, DnaMutation> findAll() {
+		return (Map<String, DnaMutation>) redisTemplate.opsForHash().entries(HASH_KEY);
 	}
 
 	@Override

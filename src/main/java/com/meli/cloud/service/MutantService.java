@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.meli.cloud.model.DnaMutation;
 import com.meli.cloud.model.DnaStats;
-import com.techprimers.model.User;
 
 @Repository
 public class MutantService {
@@ -201,9 +200,10 @@ public class MutantService {
 	 * 
 	 * @return List<DnaMutation>
 	 */
-	public List<Map<String, DnaMutation>> findAll() {
+	public Map<String, DnaMutation> findAll() {
 		// first get all data from our database
-		List<Map<String, DnaMutation>> dnaMutationList = redisService.findAll();		
+		Map<String, DnaMutation> dnaMutationList = redisService.findAll();
+		
 		return dnaMutationList;
 	}
 }
