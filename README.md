@@ -27,10 +27,10 @@ In the case of POST you should send a JSON with the next Structure:
 ## Architecture 
 - [Java] - Java with Spring Framework
 - [AWS] - Amazon Web Service, 
-	> ElastiCache for Redis
-	> Elastic Beanstalk
-	> CodePipeline
-	> IAM
+	- ElastiCache for Redis
+	- Elastic Beanstalk
+	- CodePipeline
+	- IAM
 - [Redis] - in-memory data structure store
 - [GitHub] - Repository of Code Source
 
